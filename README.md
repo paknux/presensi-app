@@ -68,10 +68,22 @@ nano .env
 ```
 Edit nilai berikut:
 ```
+# Database RDS MySQL
 DB_HOST=your-rds-endpoint.rds.amazonaws.com
-S3_BUCKET_NAME=your-bucket-name
-EFS_MOUNT_PATH=/mnt/efs/presensi
+DB_PORT=3306
+DB_USER=admin
+DB_PASS=P4ssw0rd
+DB_NAME=presensi_db
+
+# S3
+S3_BUCKET_NAME=your-s3-bucket-name
 AWS_REGION=us-east-1
+
+# EFS
+EFS_MOUNT_PATH=/mnt/efs/presensi
+
+# App
+PORT=3000
 ```
 
 ### 4. Setup Database
