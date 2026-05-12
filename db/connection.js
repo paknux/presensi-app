@@ -86,11 +86,9 @@ async function initDatabase() {
     if (rows[0].total === 0) {
       await db.query(`
         INSERT INTO kelas (nama_kelas, wali_kelas) VALUES
-        ('X-A', 'Budi Santoso, S.Pd'),
-        ('X-B', 'Siti Rahayu, S.Pd'),
-        ('XI-A', 'Ahmad Fauzi, S.Pd'),
-        ('XI-B', 'Dewi Kusuma, S.Pd'),
-        ('XII-A', 'Hendra Wijaya, S.Pd')
+        ('X TJKT 1', 'Budi Santoso, S.Pd.'),
+        ('XI TJKT 1', 'Ahmad Fauzi, S.Pd.'),
+        ('XII TJKT 1', 'Hendra Wijaya, S.Pd.')
       `);
       console.log('✅ Data kelas awal berhasil ditambahkan');
     }
