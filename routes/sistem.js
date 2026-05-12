@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const os = require('os');
 const fs = require('fs');
-const pool = require('../db/connection');
+const { pool } = require('../db/connection');
 const { s3Client, BUCKET_NAME } = require('../config/s3');
 const { HeadBucketCommand } = require('@aws-sdk/client-s3');
 require('dotenv').config();
