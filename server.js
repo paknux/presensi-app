@@ -31,6 +31,11 @@ app.use('/api/siswa', require('./routes/siswa'));
 app.use('/api/presensi', require('./routes/presensi'));
 app.use('/api/kelas', require('./routes/kelas'));
 
+// ✅ Health check untuk ALB Target Group — HARUS sebelum catch-all (*)
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', uptime: process.uptime() });
+});
+
 // Catch-all ke frontend
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -44,7 +49,7 @@ app.use((err, req, res, next) => {
 
 // Jalankan init DB dulu, baru start server
 initDatabase().then(() => {
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`
   ╔══════════════════════════════════════╗
   ║   🎓 Aplikasi Presensi Siswa        ║
@@ -53,5 +58,6 @@ initDatabase().then(() => {
     `);
     console.log(`📡 REST API: http://localhost:${PORT}/api`);
     console.log(`🌐 Frontend: http://localhost:${PORT}`);
+    console.log(`❤️  Health check: http://localhost:${PORT}/health`);
   });
 });
