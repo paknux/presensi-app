@@ -1,6 +1,6 @@
 # 🎓 Aplikasi Presensi Siswa
 
-Aplikasi presensi siswa berbasis Node.js dengan integrasi AWS (EFS, S3, RDS MySQL).
+Aplikasi presensi siswa berbasis Node.js dengan integrasi AWS (EFS, S3, RDS MariaDB).
 
 ## Arsitektur
 
@@ -9,7 +9,7 @@ Client (Browser)
      │
      ▼
 Node.js Express (REST API)
-     ├── RDS MySQL  → Data siswa, presensi
+     ├── RDS MariaDB  → Data siswa, presensi
      ├── S3 (IAM)   → Foto profil siswa
      └── EFS        → Foto presensi harian
 ```
@@ -33,7 +33,7 @@ presensi-app/
 ├── package.json
 ├── .env                   # Konfigurasi environment
 ├── db/
-│   ├── connection.js      # Koneksi MySQL pool
+│   ├── connection.js      # Koneksi MariaDB pool
 │   └── schema.sql         # DDL database
 ├── config/
 │   └── s3.js              # S3 client (IAM Role)
@@ -50,7 +50,7 @@ presensi-app/
 
 ### 1. Prasyarat di AWS
 - EC2 dengan IAM Role yang punya akses S3 (AmazonS3FullAccess)
-- RDS MySQL dengan endpoint yang bisa diakses dari EC2
+- RDS MariaDB dengan endpoint yang bisa diakses dari EC2
 - EFS sudah di-mount ke EC2 di path `/mnt/efs/presensi`
 - S3 bucket sudah dibuat
 
@@ -73,7 +73,7 @@ nano .env
 ```
 Edit dan sesuaikan nilai berikut:
 ```
-# Database RDS MySQL
+# Database RDS MariaDB
 DB_HOST=your-rds-endpoint.rds.amazonaws.com
 DB_PORT=3306
 DB_USER=admin
