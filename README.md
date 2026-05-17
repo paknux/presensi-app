@@ -91,15 +91,22 @@ EFS_MOUNT_PATH=/mnt/efs/presensi
 PORT=80
 ```
 
-
-
 ### 4. Jalankan Aplikasi
 ```bash
 pm2 start server.js --name presensi-app
+```
+
+### 5. Jadikan service
+```bash
+pm2 startup systemd -u root --hp /root
+```
+
+### 6. Simpan konfigurasi pm2 aktif
+```bash
 pm2 save
 ```
 
-### 6. Akses Aplikasi
+### 7. Akses Aplikasi
 ```
 http://ippublic
 ```
