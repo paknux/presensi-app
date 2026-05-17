@@ -96,7 +96,7 @@ PORT=80
 pm2 start server.js --name presensi-app
 ```
 
-### 5. Jadikan service
+### 5. Jadikan service sebagai user root
 ```bash
 pm2 startup systemd -u root --hp /root
 ```
